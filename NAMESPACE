@@ -1,0 +1,3 @@
+useDynLib(nortestARMA)
+import(astsa)
+exportPattern(".")
