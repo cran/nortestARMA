@@ -5,6 +5,8 @@
 #include "Rmath.h"
 //#include <R_ext/Applic.h>
 
+using std::sqrt;
+
 extern "C" {
     
 

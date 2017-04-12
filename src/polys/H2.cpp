@@ -72,17 +72,11 @@ Fin-Commentaires */
 
 #include<math.h>
 
-void H2(int n, double *x)
-
-{
-
-int i;
-
-for (i=0;i<n;i++)
-
-  {*(x+i)=sqrt(5)*(3*pow(*(x+i),2)-1)/2;}
-
+void H2(int n, double *x) {
+  int i;
+  for (i = 0; i < n; i++) {
+    x[i] = sqrt(5.0) * (3.0 * pow(x[i], 2.0) - 1.0) / 2.0;
+  }
 return;
-
 }
 

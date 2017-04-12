@@ -72,17 +72,11 @@ Fin-Commentaires */
 
 #include<math.h>
 
-void H10(int n, double *x)
-
-{
-
-int i;
-
-for (i=0;i<n;i++)
-
-  {*(x+i)=sqrt(21)*(46189*pow(*(x+i),10)-109395*pow(*(x+i),8)+90090*pow(*(x+i),6)-30030*pow(*(x+i),4)+3465*pow(*(x+i),2)-63)/256;}
-
-return;
-
+void H10(int n, double *x) {
+  int i;
+  for (i = 0; i < n; i++) {
+    x[i] = sqrt(21.0) * (46189.0 * pow(x[i], 10.0) - 109395.0 * pow(x[i], 8.0) + 90090.0 * pow(x[i], 6.0) - 30030.0 * pow(x[i], 4.0) + 3465.0 * pow(x[i], 2.0) - 63.0) / 256.0;
+  }
+  return;
 }
 

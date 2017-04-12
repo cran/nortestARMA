@@ -1,0 +1,15 @@
+2016-05-04
+----------
+
+Version 1.0 : First released version submitted to CRAN.
+
+2017-04-10
+----------
+
+Version 1.0.1 : 
+- I modified the H*.cpp files to prevent a compilation error on Solaris (e.g., replacing sqrt(13) with sqrt(13.0)).
+- I added using std::sqrt; in the calcstat.cpp file.
+- I added the reference to Canadian Journal of Statistic paper.
+- I replaced in the NAMESPACE file useDynLib(nortestARMA) with useDynLib(nortestARMA, .registration = TRUE)
+- I added the file registerDynamicSymbol.c in the scr section
+

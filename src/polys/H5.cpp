@@ -72,17 +72,11 @@ Fin-Commentaires */
 
 #include<math.h>
 
-void H5(int n, double *x)
-
-{
-
-int i;
-
-for (i=0;i<n;i++)
-
-  {*(x+i)=sqrt(11)*(63*pow(*(x+i),5)-70*pow(*(x+i),3)+15*(*(x+i)))/8;}
-
-return;
-
+void H5(int n, double *x) {
+  int i;
+  for (i = 0; i < n; i++) {
+    x[i] = sqrt(11.0) * (63.0 * pow(x[i], 5.0) - 70.0 * pow(x[i], 3.0) + 15.0 * x[i]) / 8.0;
+  }
+  return;
 }
 

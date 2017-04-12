@@ -53,17 +53,11 @@ Fin-Commentaires */
 
 #include<math.h>
 
-void H4(int n, double *x)
-
-{
-
-int i;
-
-for (i=0;i<n;i++)
-
-  {*(x+i)=3*(35*pow(*(x+i),4)-30*pow(*(x+i),2)+3)/8;}
-
-return;
-
+void H4(int n, double *x) {
+  int i;
+  for (i = 0; i < n; i++) {
+    x[i] = 3.0 * (35.0 * pow(x[i], 4.0) - 30.0 * pow(x[i], 2.0) + 3.0) / 8.0;
+  }
+  return;
 }
 

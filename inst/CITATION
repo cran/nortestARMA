@@ -1,0 +1,19 @@
+citHeader("To cite the CompQuadForm package in publications use:")
+
+citEntry(entry="Article",
+         title = "Estimating the mean and its effects on Neyman smooth tests of
+normality for ARMA models",
+         author = personList(as.person("P. Duchesne"),as.person("P. Lafaye de Micheaux"),as.person("J. Tagne")),
+	 journal = "Canadian Journal of Statistics",
+         year  = "2016",
+	 pages = "241--270",
+	 volume = "44(3)",
+         textVersion = 
+         paste("Duchesne, P., Lafaye De Micheaux, P. and Tagne, J. (2016)", 
+               "Estimating the mean and its effects on Neyman smooth tests of
+normality for ARMA models",
+               "Canadian Journal of Statistics",
+              "vol. 44(3), p. 241--270"
+	      )
+)
+

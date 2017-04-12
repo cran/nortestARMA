@@ -72,17 +72,11 @@ Fin-Commentaires */
 
 #include<math.h>
 
-void H9(int n, double *x)
-
-{
-
-int i;
-
-for (i=0;i<n;i++)
-
-  {*(x+i)=sqrt(19)*(12155*pow(*(x+i),9)-25740*pow(*(x+i),7)+18018*pow(*(x+i),5)-4620*pow(*(x+i),3)+315*(*(x+i)))/128;}
-
-return;
-
+void H9(int n, double *x) { 
+  int i;
+  for (i = 0; i < n; i++) {
+    x[i] = sqrt(19.0) * (12155.0 * pow(x[i], 9.0) - 25740.0 * pow(x[i], 7.0) + 18018.0 * pow(x[i], 5.0) - 4620.0 * pow(x[i], 3.0) + 315.0 * x[i]) / 128.0;
+  }
+  return;
 }
 

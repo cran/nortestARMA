@@ -72,17 +72,11 @@ Fin-Commentaires */
 
 #include<math.h>
 
-void H6(int n, double *x)
-
-{
-
-int i;
-
-for (i=0;i<n;i++)
-
-  {*(x+i)=sqrt(13)*(231*pow(*(x+i),6)-315*pow(*(x+i),4)+105*pow(*(x+i),2)-5)/16;}
-
-return;
-
+void H6(int n, double *x) {
+  int i;
+  for (i = 0; i < n; i++) {
+    x[i] = sqrt(13.0) * (231.0 * pow(x[i], 6.0) - 315.0 * pow(x[i], 4.0) + 105.0 * pow(x[i], 2.0) - 5.0) / 16.0;
+  }
+  return;
 }
 
