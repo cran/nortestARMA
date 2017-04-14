@@ -6,6 +6,8 @@
 //#include <R_ext/Applic.h>
 
 using std::sqrt;
+using std::log;
+using std::pow;
 
 extern "C" {
     
@@ -97,7 +99,7 @@ extern "C" {
   double rktemp1, rktemp2, rktemp3, penal, mxLed, mxLedduch, mxLedtagne; // ,rktemp, maxbn; //, c;
 
   //  c = 2.4;
-  //  penal = (1.0+(sqrt(2)*exp(0)/double(n)))*log(double(n));
+  //  penal = (1.0+(std::sqrt(2.0)*exp(0)/double(n)))*log(double(n));
   // penal = log(double(n));
   // penal = 2;
 	
@@ -123,7 +125,7 @@ extern "C" {
   penalab = new double[BigD[0]];
   na_value = new double[BigD[0]];
 
-  a[0] = 0.9772050238058398; // C'est sqrt(3/pi). Avant j'avais mis: 0.9772049160826732;
+  a[0] = 0.9772050238058398; // C'est sqrt(3.0/pi). Avant j'avais mis: 0.9772049160826732;
   a[1] = 0.0;
   a[2] = 0.18300807767356908;
   a[3] = 0.0;
@@ -135,7 +137,7 @@ extern "C" {
   a[9] = 0.0;
 
   b[0] = 0.0;
-  b[1] = 1.232808888123; // C'est sqrt(15)/pi. Avant, j'avais mis: 1.2328087469140054;
+  b[1] = 1.232808888123; // C'est sqrt(15.0)/pi. Avant, j'avais mis: 1.2328087469140054;
   b[2] = 0.0;
   b[3] = 0.5211244103155082;
   b[4] = 0.0;
@@ -155,7 +157,7 @@ extern "C" {
   R_cumsum(b, BigD, na_value, cumsumb);
   R_cumsum(b2, BigD, na_value, cumsumb2);
 
-  for (k = 1; k <= BigD[0]; k++) penalab[k-1] = cumsumb[k-1] / sqrt(2.0 - cumsumb2[k-1]) + cumsuma[k-1] / sqrt(1.0 - cumsuma2[k-1]);
+  for (k = 1; k <= BigD[0]; k++) penalab[k-1] = cumsumb[k-1] / std::sqrt(2.0 - cumsumb2[k-1]) + cumsuma[k-1] / std::sqrt(1.0 - cumsuma2[k-1]);
 
 
   for (t = 1; t <= n; t++) {U[t-1] = 2.0 *  pnorm(residu[t-1] / sigmahat[0], 0.0, 1.0, 1,0) - 1.0;}
@@ -278,17 +280,17 @@ extern "C" {
 
 
 
-  //  hKtemp[j-1]/sqrt(double(n)) : sqrt(n)*bhatnj comme dans Inglot (2006)
-  //   maxbn = fabs(hKtemp[0]/sqrt(double(n)));
+  //  hKtemp[j-1]/std::sqrt(double(n)) : std::sqrt(n)*bhatnj comme dans Inglot (2006)
+  //   maxbn = fabs(hKtemp[0]/std::sqrt(double(n)));
 
   // for (k=*(d+0);k<=BigD[0]-1;k++) {
-  //   if (fabs(hKtemp[k]/sqrt(double(n))) > maxbn) maxbn = fabs(hKtemp[k]/sqrt(double(n)));
+  //   if (fabs(hKtemp[k]/std::sqrt(double(n))) > maxbn) maxbn = fabs(hKtemp[k]/std::sqrt(double(n)));
   //  }
 
-  //  if (maxbn <= sqrt(c*log(double(n)))) {penal = log(double(n));} else penal = 2.0;
+  //  if (maxbn <= std::sqrt(c*log(double(n)))) {penal = log(double(n));} else penal = 2.0;
 
 
-  penal = log(double(n));
+  penal = std::log(double(n));
 
   //      On calcule le K optimal par la methode de Ledwina: (critere S2)
      //   for (k=*(d+0);k<=BigD[0];k++) {Ledwitagne[k-1]=RKtagne[k-1]-(k+penalab[k-1])*penal;}

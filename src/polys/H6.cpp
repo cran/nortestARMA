@@ -75,7 +75,7 @@ Fin-Commentaires */
 void H6(int n, double *x) {
   int i;
   for (i = 0; i < n; i++) {
-    x[i] = sqrt(13.0) * (231.0 * pow(x[i], 6.0) - 315.0 * pow(x[i], 4.0) + 105.0 * pow(x[i], 2.0) - 5.0) / 16.0;
+    x[i] = std::sqrt(13.0) * (231.0 * std::pow(x[i], 6.0) - 315.0 * std::pow(x[i], 4.0) + 105.0 * std::pow(x[i], 2.0) - 5.0) / 16.0;
   }
   return;
 }

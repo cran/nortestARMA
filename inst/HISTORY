@@ -13,3 +13,10 @@ Version 1.0.1 :
 - I replaced in the NAMESPACE file useDynLib(nortestARMA) with useDynLib(nortestARMA, .registration = TRUE)
 - I added the file registerDynamicSymbol.c in the scr section
 
+2017-04-14
+----------
+
+Version 1.0.2 : 
+- I modified all cpp files to add std:: before pow, log and sqrt functions.
+- I also added using std::log; and using std::pow; in the calcstat.cpp file.
+- I also added using std::log; in the quantile.cpp file.

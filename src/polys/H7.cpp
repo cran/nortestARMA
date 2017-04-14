@@ -75,7 +75,7 @@ Fin-Commentaires */
 void H7(int n, double *x) {
   int i;
   for (i = 0; i < n; i++) {
-    x[i] = sqrt(15.0) * (429.0 * pow(x[i], 7.0) - 693.0 * pow(x[i], 5.0) + 315.0 * pow(x[i], 3.0) - 35.0 * x[i]) / 16.0;
+    x[i] = std::sqrt(15.0) * (429.0 * std::pow(x[i], 7.0) - 693.0 * std::pow(x[i], 5.0) + 315.0 * std::pow(x[i], 3.0) - 35.0 * x[i]) / 16.0;
   }
   return;
 }

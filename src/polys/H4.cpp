@@ -56,7 +56,7 @@ Fin-Commentaires */
 void H4(int n, double *x) {
   int i;
   for (i = 0; i < n; i++) {
-    x[i] = 3.0 * (35.0 * pow(x[i], 4.0) - 30.0 * pow(x[i], 2.0) + 3.0) / 8.0;
+    x[i] = 3.0 * (35.0 * std::pow(x[i], 4.0) - 30.0 * std::pow(x[i], 2.0) + 3.0) / 8.0;
   }
   return;
 }

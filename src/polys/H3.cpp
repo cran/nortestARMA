@@ -75,7 +75,7 @@ Fin-Commentaires */
 void H3(int n, double *x) {
   int i;
   for (i = 0; i < n; i++) {
-    x[i] = sqrt(7.0) * (5.0 * pow(x[i], 3.0) - 3.0 * x[i]) / 2.0;
+    x[i] = std::sqrt(7.0) * (5.0 * std::pow(x[i], 3.0) - 3.0 * x[i]) / 2.0;
   } 
   return;
 }

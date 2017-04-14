@@ -75,7 +75,7 @@ Fin-Commentaires */
 void H9(int n, double *x) { 
   int i;
   for (i = 0; i < n; i++) {
-    x[i] = sqrt(19.0) * (12155.0 * pow(x[i], 9.0) - 25740.0 * pow(x[i], 7.0) + 18018.0 * pow(x[i], 5.0) - 4620.0 * pow(x[i], 3.0) + 315.0 * x[i]) / 128.0;
+    x[i] = std::sqrt(19.0) * (12155.0 * std::pow(x[i], 9.0) - 25740.0 * std::pow(x[i], 7.0) + 18018.0 * std::pow(x[i], 5.0) - 4620.0 * std::pow(x[i], 3.0) + 315.0 * x[i]) / 128.0;
   }
   return;
 }

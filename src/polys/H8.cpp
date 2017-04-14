@@ -75,7 +75,7 @@ Fin-Commentaires */
 void H8(int n, double *x) {
   int i;
   for (i = 0; i < n; i++) {
-    x[i] = sqrt(17.0) * (6435.0 * pow(x[i], 8.0) - 12012.0 * pow(x[i], 6.0) + 6930.0 * pow(x[i], 4.0) - 1260.0 * pow(x[i], 2.0) + 35.0) / 128.0;
+    x[i] = std::sqrt(17.0) * (6435.0 * std::pow(x[i], 8.0) - 12012.0 * std::pow(x[i], 6.0) + 6930.0 * std::pow(x[i], 4.0) - 1260.0 * std::pow(x[i], 2.0) + 35.0) / 128.0;
   }
   return;
 }

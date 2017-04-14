@@ -5,6 +5,9 @@
 #include "Rmath.h"
 #include <R_ext/Applic.h>
 
+using std::log;
+
+
 extern "C" {
 
 
@@ -96,12 +99,12 @@ extern "C" {
       terme4 = 0.0;
       for (i = 1; i <= xlen[0]; i++) {
 
-	terme1 = Delta(x[i - 1], d[0]) * Delta(log(n[0]), 1);
+	terme1 = Delta(x[i - 1], d[0]) * Delta(std::log((double)n[0]), 1);
 	
-	if (x[i - 1] <= log(n[0])) terme2 = 0.0;
+	if (x[i - 1] <= std::log((double)n[0])) terme2 = 0.0;
 	else { 	  
 	  ex2[0] = x[i - 1];
-	  a[0] = log(n[0]);
+	  a[0] = std::log((double)n[0]);
 	  b[0] = x[i - 1];	  
 	  Rdqags(f1t2, ex2, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work); // f1v1
 	  terme2 = result[0];
@@ -122,29 +125,29 @@ extern "C" {
 
 	ex1[0] = (double)n[0];
 	a[0] = 0.0;
-	b[0] = log(n[0]);
+	b[0] = std::log((double)n[0]);
 	
 	Rdqags(f2t1, ex1, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work);    // f1v2
 	terme1 = Delta(x[i - 1], d[0]) * result[0]; // Son premier terme (p. 5)
 	
-	if (x[i - 1] <= log(n[0])) terme2 = 0.0;
+	if (x[i - 1] <= std::log((double)n[0])) terme2 = 0.0;
 	else { 
 	  ex2[0] = x[i - 1];
 	  a[0] = 0.0;
-	  b[0] = x[i - 1] - log(n[0]);
+	  b[0] = x[i - 1] - std::log((double)n[0]);
 	  Rdqags(f2t2, ex2, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work); // f2v2
-	  terme2 = Delta(log(n[0]), 1) * (result[0] - Delta(log(n[0]), 1) * Delta(x[i - 1] - log(n[0]), d[0])); // Son 3eme terme (p. 5)
+	  terme2 = Delta(std::log((double)n[0]), 1) * (result[0] - Delta(std::log((double)n[0]), 1) * Delta(x[i - 1] - std::log((double)n[0]), d[0])); // Son 3eme terme (p. 5)
 	}
 	
-	if (x[i - 1] <= 2 * log(n[0])) terme3 = 0.0;
+	if (x[i - 1] <= 2 * std::log((double)n[0])) terme3 = 0.0;
 	else { 
 	  ex3[1] = x[i - 1];
 	  a[0] = 0.0;
-	  b[0] = log(n[0]);
+	  b[0] = std::log((double)n[0]);
 	  Rdqags(f2t3af3t3a, ex3, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work); // Son 2eme terme (p. 5)  // f4v2
 	  terme3 = result[0]; 
-	  a[0] = log(n[0]);
-	  b[0] = x[i - 1] - log(n[0]);
+	  a[0] = std::log((double)n[0]);
+	  b[0] = x[i - 1] - std::log((double)n[0]);
 	  Rdqags(f2t3bf3t3b, ex3, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work); // Son 4eme terme (p. 5)  // f5v2
 	  terme3 = terme3 + result[0];
 	}
@@ -165,61 +168,61 @@ extern "C" {
 
 	ex1[0] = (double)n[0];
 	a[0] = 0;
-	b[0] = log(n[0]);      
+	b[0] = std::log((double)n[0]);      
 	Rdqags(f3t1, ex1, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work); // f2v3
 	terme1 = Delta(x[i - 1], d[0]) * result[0];
 
-	if (x[i - 1] <= log(n[0])) terme2 = 0.0;
+	if (x[i - 1] <= std::log((double)n[0])) terme2 = 0.0;
 	else { 
 	  ex3[1] = x[i - 1];
-	  a[0] = log(n[0]);
+	  a[0] = std::log((double)n[0]);
 	  b[0] = x[i - 1];
 	  Rdqags(f3t2a, ex3, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work); // f3v3
 	  terme2 = result[0];
 
 	  ex1[0] = (double)n[0];
 	  a[0] = 0;
-	  b[0] = log(n[0]);
+	  b[0] = std::log((double)n[0]);
 	  Rdqags(f3t2b, ex1, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work); // f4v3
 	  terme2 = terme2 * result[0];
 
 	}
       
-	if (x[i - 1] <= 2.0 * log(n[0])) terme3 = 0.0;
+	if (x[i - 1] <= 2.0 * std::log((double)n[0])) terme3 = 0.0;
 	else { 
 	  ex3[1] = x[i - 1];
 	  a[0] = 0;
-	  b[0] = log(n[0]);
+	  b[0] = std::log((double)n[0]);
 	  Rdqags(f2t3af3t3a, ex3, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work); // f4v2
 	  terme3 = result[0];
-	  a[0] = log(n[0]);
-	  b[0] = x[i - 1] - log(n[0]);
+	  a[0] = std::log((double)n[0]);
+	  b[0] = x[i - 1] - std::log((double)n[0]);
 	  Rdqags(f2t3bf3t3b, ex3, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work); // f5v2
 	  terme3 = terme3 + result[0];
-	  terme3 = Delta(log(n[0]), 1) * terme3;
+	  terme3 = Delta(std::log((double)n[0]), 1) * terme3;
 	}
 
-	if (x[i - 1] <= 3.0 * log(n[0])) terme4 = 0.0;
+	if (x[i - 1] <= 3.0 * std::log((double)n[0])) terme4 = 0.0;
 	else { 
 	  ex3[1] = x[i - 1];
 	  a[0] = 0.0;
-	  b[0] = log(n[0]);
+	  b[0] = std::log((double)n[0]);
 	  Rdqags(f3t4a, ex3, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work);
 	  terme4 = result[0];
 	  a[0] = 0.0;
-	  b[0] = log(n[0]);
+	  b[0] = std::log((double)n[0]);
 	  Rdqags(f3t4b, ex3, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work);
 	  terme4 = terme4 + result[0];
 	  a[0] = 0.0;
-	  b[0] = log(n[0]);
+	  b[0] = std::log((double)n[0]);
 	  Rdqags(f3t4c, ex3, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work);
 	  terme4 = terme4 + result[0];
-	  a[0] = log(n[0]);
-	  b[0] = x[i - 1] - 2.0 * log(n[0]);
+	  a[0] = std::log((double)n[0]);
+	  b[0] = x[i - 1] - 2.0 * std::log((double)n[0]);
 	  Rdqags(f3t4d, ex3, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work);
 	  terme4 = terme4 + result[0];
-	  a[0] = log(n[0]);
-	  b[0] = x[i - 1] - 2.0 * log(n[0]);
+	  a[0] = std::log((double)n[0]);
+	  b[0] = x[i - 1] - 2.0 * std::log((double)n[0]);
 	  Rdqags(f3t4e, ex3, a, b, epsabs, epsrel, result, abserr, neval, ier, limit, lenw, last, iwork, work);
 	  terme4 = terme4 + result[0];
 	}
@@ -293,7 +296,7 @@ extern "C" {
     double delta(double x, int d);
     int i, nn;    
     nn =  (int)*((double*)ex1+0);
-    for (i = 1; i <= n; i++) {z[i - 1] = Delta(2.0 * log(nn) - z[i - 1], 1) * delta(z[i - 1], 1);}
+    for (i = 1; i <= n; i++) {z[i - 1] = Delta(2.0 * std::log((double)nn) - z[i - 1], 1) * delta(z[i - 1], 1);}
   }
   
   void f2t2(double *z, int n, void *ex2) { // f2v2
@@ -362,7 +365,7 @@ extern "C" {
     
     for (i = 1; i <= n; i++) {
       
-      a[0] = (2.0 * log(nn) - z[i - 1]);
+      a[0] = (2.0 * std::log((double)nn) - z[i - 1]);
       b[0] = x - z[i - 1];
       ex33[0] = z[i - 1];
       
@@ -432,7 +435,7 @@ extern "C" {
     
     limit[0] = 100;
     lenw[0] = 4 * limit[0];
-    a[0] = log(nn);
+    a[0] = std::log((double)nn);
     
     iwork =   new int[limit[0]];
     work = new double[lenw[0]];
@@ -477,7 +480,7 @@ extern "C" {
     int i, nn;    
     y = *((double*)ex2+0);
     nn = (int)*((double*)ex2+1);
-    for (i = 1; i <= n; i++) {z[i - 1] = Delta(3.0 * log(nn) - y - z[i - 1], 1) * delta(z[i - 1], 1);}
+    for (i = 1; i <= n; i++) {z[i - 1] = Delta(3.0 * std::log((double)nn) - y - z[i - 1], 1) * delta(z[i - 1], 1);}
   }
 
 
@@ -524,7 +527,7 @@ extern "C" {
     for (i = 1; i <= n; i++) {
       
       a[0] = 0;
-      b[0] = 2.0 * log(nn) - y[i - 1];
+      b[0] = 2.0 * std::log((double)nn) - y[i - 1];
       ex2[0] = y[i - 1];
       
       Rdqags(f3t1inside, ex2, a, b, epsabs, epsrel, // f1v3
@@ -571,7 +574,7 @@ extern "C" {
     double delta(double x, int d);
     int i, nn;    
     nn = (int)*((double*)ex1+0);
-    for (i = 1; i <= n; i++) {z[i - 1] = Delta(2.0 * log(nn) - z[i - 1], 1) * delta(z[i - 1], 1);}
+    for (i = 1; i <= n; i++) {z[i - 1] = Delta(2.0 * std::log((double)nn) - z[i - 1], 1) * delta(z[i - 1], 1);}
   }
 
   void f3t4a(double *x1, int n, void *ex3) {
@@ -619,7 +622,7 @@ extern "C" {
     work = new double[lenw[0]];
 
     a[0] = 0.0;
-    b[0] = log(nn);
+    b[0] = std::log((double)nn);
 
     for (i = 1; i <= n; i++) {
       
@@ -700,7 +703,7 @@ extern "C" {
 
     for (i = 1; i <= n; i++) {
       
-      a[0] = 3.0 * log(nn) - x1 - x2[i - 1];
+      a[0] = 3.0 * std::log((double)nn) - x1 - x2[i - 1];
       b[0] = x - x1 - x2[i - 1];
       ex42[0] = x2[i - 1];
       
@@ -790,8 +793,8 @@ extern "C" {
 
     for (i = 1; i <= n; i++) {
       
-      a[0] = 2.0 * log(nn) - x1[i - 1];
-      b[0] = x - log(nn) - x1[i - 1];
+      a[0] = 2.0 * std::log((double)nn) - x1[i - 1];
+      b[0] = x - std::log((double)nn) - x1[i - 1];
       ex43[3] = x1[i - 1];
       
       Rdqags(f3t4binside1, ex43, a, b, epsabs, epsrel,
@@ -869,7 +872,7 @@ extern "C" {
 
     for (i = 1; i <= n; i++) {
       
-      a[0] = log(nn);
+      a[0] = std::log((double)nn);
       b[0] = x - x1 - x2[i - 1];
       ex44[0] = x2[i - 1];
       
@@ -945,11 +948,11 @@ extern "C" {
     iwork =   new int[limit[0]];
     work = new double[lenw[0]];
 
-    a[0] = log(nn);
+    a[0] = std::log((double)nn);
 
     for (i = 1; i <= n; i++) {
       
-      b[0] = 2.0 * log(nn) - x1[i - 1];
+      b[0] = 2.0 * std::log((double)nn) - x1[i - 1];
 
       ex41[3] = x1[i - 1];
       
@@ -1026,7 +1029,7 @@ extern "C" {
     work = new double[lenw[0]];
 
     a[0] = 0.0;
-    b[0] = log(nn);
+    b[0] = std::log((double)nn);
 
     for (i = 1; i <= n; i++) {
       
@@ -1107,7 +1110,7 @@ extern "C" {
 
     for (i = 1; i <= n; i++) {
       
-      a[0] = 2.0 * log(nn) - x2[i - 1];
+      a[0] = 2.0 * std::log((double)nn) - x2[i - 1];
       b[0] = x - x1 - x2[i - 1];
       ex42[0] = x2[i - 1];
       
@@ -1183,11 +1186,11 @@ extern "C" {
     iwork =   new int[limit[0]];
     work = new double[lenw[0]];
 
-    a[0] = log(nn);
+    a[0] = std::log((double)nn);
 
     for (i = 1; i <= n; i++) {
       
-      b[0] = x - log(nn) - x1[i - 1];
+      b[0] = x - std::log((double)nn) - x1[i - 1];
       ex43[3] = x1[i - 1];
       
       Rdqags(f3t4binside1, ex43, a, b, epsabs, epsrel,
